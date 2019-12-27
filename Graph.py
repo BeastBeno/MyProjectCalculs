@@ -1,26 +1,11 @@
-import csv
 import xlrd
 import numpy as np
 import matplotlib.pyplot as plt
+import pylab
 
-
-
-"""with open('C:/Users/awous/PycharmProjects/ProjectCalculs/data.csv', "r", encoding='utf-8-sig') as File:
-    reader = csv.reader(File, delimiter=';')
-    for line in reader:
-        print(line)  # La tu auras chaque ligne
-"""
 
 document = xlrd.open_workbook("C:/Users/awous/PycharmProjects/ProjectCalculs/data.xlsx")
-#print("Nombre de feuilles: "+str(document.nsheets))
-#print("Noms des feuilles: "+str(document.sheet_names()))
-
 feuille_1 = document.sheet_by_index(0)
-
-#print("Format de la feuille 1:")
-#print("Nom: "+str(feuille_1.name))
-#print("Nombre de lignes: "+str(feuille_1.nrows))
-#print("Nombre de colonnes: "+str(feuille_1.ncols))
 
 cols = feuille_1.ncols
 rows = feuille_1.nrows
@@ -57,11 +42,19 @@ for i in range(0, len(y)):
     y2 += [y[i] + (difficulty * y[i])/100]
     print(y2[i])
 
-plt.plot(x, y, "*:", label="Session's week")
-plt.plot(x, y2, "o-", label="New week")
+width = 0.9
+BarName = ['week1', 'week2', 'week3', 'week4', 'week5', 'week6', 'week7', 'week8', 'week9',
+           'week10', 'week11', 'week12', 'week13', 'week14', 'week15']
+
+fig = plt.figure()
+plt.bar(x, y, width, color='#62FF33')
+plt.bar(x, y2, width, color='#EE6666')
+#plt.plot(x, y, "*:", label="Session's week")
+#plt.plot(x, y2, "o-", label="New week")
 plt.title("My session works' hours")
 plt.xlabel("Week")
 plt.ylabel("Hours")
-plt.legend()
+pylab.xticks(x, BarName, rotation=40)
+plt.savefig('HoursBar.png')
 plt.show()
 
