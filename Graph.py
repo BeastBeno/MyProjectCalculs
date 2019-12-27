@@ -25,6 +25,7 @@ plt.title("My session's marks")
 plt.xlabel("Evaluation number")
 plt.ylabel("Evaluation marks in percent %")
 plt.legend()
+plt.savefig('MySession.png')
 plt.show()
 
 x = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15])
@@ -40,7 +41,6 @@ print(difficulty)
 y2 = []
 for i in range(0, len(y)):
     y2 += [y[i] + (difficulty * y[i])/100]
-    print(y2[i])
 
 width = 0.9
 BarName = ['week1', 'week2', 'week3', 'week4', 'week5', 'week6', 'week7', 'week8', 'week9',
