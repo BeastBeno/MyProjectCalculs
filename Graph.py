@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import pylab
 
 
-document = xlrd.open_workbook("C:/Users/awous/PycharmProjects/ProjectCalculs/data.xlsx")
+document = xlrd.open_workbook("data.xlsx")
 feuille_1 = document.sheet_by_index(0)
 
 cols = feuille_1.ncols
