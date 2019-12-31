@@ -48,7 +48,7 @@ if ARGS.name is not None:
         plt.xlabel("Evaluation number")
         plt.ylabel("Evaluation marks in percent %")
         plt.legend()
-        plt.savefig(sheetName[0]+'MySession.png')
+        plt.savefig("C:/Beno/Java/SessionOrganization/file/"+sheetName[0]+'_MySession.png')
         plt.show()
 
     if ARGS.hours is not None:
@@ -71,13 +71,12 @@ if ARGS.name is not None:
                    'week10', 'week11', 'week12', 'week13', 'week14', 'week15']
 
         fig = plt.figure()
-        plt.bar(x, y, width, color='#62FF33')
         plt.bar(x, y2, width, color='#EE6666')
         plt.title("My session works' hours")
         plt.xlabel("Week")
         plt.ylabel("Hours")
         pylab.xticks(x, BarName, rotation=40)
-        plt.savefig('HoursBar.png')
+        plt.savefig("C:/Beno/Java/SessionOrganization/file/"+sheetName[0]+"_HoursBar")
         plt.show()
 
     if ARGS.best is not None:
@@ -93,6 +92,6 @@ if ARGS.name is not None:
         plt.xlabel("Week")
         plt.ylabel("Hours")
         pylab.xticks(x, BarName, rotation=40)
-        plt.savefig('HoursBar.png')
+        plt.savefig("C:/Beno/Java/SessionOrganization/file/"+sheetName[0]+"_BestHoursBar.png")
         plt.show()
 
