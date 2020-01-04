@@ -1,8 +1,3 @@
-/*
- * Graphic interface to add courses .
- * It a table where the users can feel his marks and change his evaluation name as need
- */
-
 package graphicInterface;
 
 import java.awt.BorderLayout;
@@ -20,6 +15,14 @@ import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.TableModel;
 
+/**
+ * Graphic interface to add courses .
+ * It a table where the users can feel his marks and change his evaluation name as need
+ * 
+ * @author  Dietz-Bénony AWOUSSI
+ * @version 1.0
+ * @since   2019-12-24
+ */
 public class AddCourseInterface extends JDialog {
 
 	/**
@@ -78,11 +81,13 @@ public class AddCourseInterface extends JDialog {
 				{
 					public void actionPerformed(ActionEvent evt)
 					{
-						/*
+						/**
+						 * <p>
 						 * By pressing OK the table is being exported to an excel sheet.
 						 * And then I run the excel sheet to let the users save his data 
 						 * he must change the expansion of the file and erase the .xls in the end of the name of the sheet
-						 * THIS MUST BE CORRECT IN A FUTURE VERSION OF THE APPLICATION
+						 * <p>
+						 * <b>Note:</b>THIS MUST BE CORRECT IN A FUTURE VERSION OF THE APPLICATION
 						 */
 						exporter(table,new File("file\\"+CourseName.courseName+"_"+"data.xls"));
 						String command = "cmd /c cd C:\\Users\\awous\\PycharmProjects\\ProjectCalculs\\MyProjectCalculs\\SessionOrganization\\file & "+CourseName.courseName+"_"+"data.xls"
@@ -106,7 +111,18 @@ public class AddCourseInterface extends JDialog {
 			getContentPane().add(new JScrollPane(table));
 		}
 	}
-	// Exporting the table to file .xls 
+	// 
+	/**
+	 * <p>
+	 * Exporting the table to file .xls 
+	 * Getting every line of my table and writing them in an excel file
+	 * he must change the expansion of the file and erase the .xls in the end of the name of the sheet
+	 * <p>
+	 * <b>Note:</b>The sheet create by this method must be save as a .xlsx file in the excel sheet
+	 * @param table the table that will be export to an excel file
+	 * @param file the file where the project will be export to
+	 * @return no return generate the excel sheet 
+	 */
 	public void exporter(JTable table, File file)
 	{
 		try

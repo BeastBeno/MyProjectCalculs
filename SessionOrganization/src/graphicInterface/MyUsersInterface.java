@@ -1,12 +1,3 @@
-/*
- * This is the principal interface of our users .
- * It make with :
- * 				 button to add courses
- * 				 A label to show the graphics
- * 				 A button to change marks
- * 				 A button to change the view of the graph(Switch between hours and marks)
- * 				 A label to show the rating of the courses	 
- */
 package graphicInterface;
 
 import java.awt.EventQueue;
@@ -20,6 +11,19 @@ import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import java.awt.Color;
 
+/**
+ * This is the principal interface of our users .
+ * It make with :
+ * 				 button to add courses
+ * 				 A label to show the graphics
+ * 				 A button to change marks
+ * 				 A button to change the view of the graph(Switch between hours and marks)
+ * 				 A label to show the rating of the courses
+ * 
+ * @author  Dietz-Bénony AWOUSSI
+ * @version 1.0
+ * @since   2019-12-24	 
+ */
 public class MyUsersInterface {
 
 	private JFrame frame;
@@ -87,11 +91,13 @@ public class MyUsersInterface {
 		btnAddACourse.setBounds(10, 519, 116, 35);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				/*
+				/**
+				 * <p>
 				 * When the user click on the course button he is lunching the prompt command and will being connecting 
 				 * to the Python program
 				 * We are also making sure the python environment is correctly equipt, Cause we need to install some module
 				 * to lunch the application 
+				 * <p>
 				 */
 				//passage par argument de la commande à lancer
 				String command = "cmd /c cd C:\\Users\\awous\\PycharmProjects\\ProjectCalculs\\MyProjectCalculs & pip install xlrd"
@@ -133,15 +139,21 @@ public class MyUsersInterface {
 		JButton btnViewMyWeeks = new JButton("View my weeks' organization");
 		btnViewMyWeeks.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				/*
+				/**
+				 * <p>
 				 * This button will help us to lunch the python program and show up the graph of the weeks orgarnisation of 
 				 * the student session 
 				 * And then we set the picture to show up the hours bar
+				 * <p>
 				 */
-				//passage par argument de la commande à lancer
 				String command = "cmd /c cd C:\\Users\\awous\\PycharmProjects\\ProjectCalculs\\MyProjectCalculs & "
 						+ "Graph.py "+CourseName.courseName+
 						" -t A+ & exit";
+				/**
+				 * This function lunch the command in the prompt command and show the timme per weeks
+				 * @param command
+				 * @return no return
+				 */
 				StartCommand(command);
 				lblNewLabel.setIcon(new ImageIcon("file\\"+CourseName.courseName+"_HoursBar.png"));
 				lblNewLabel.setEnabled(true);
@@ -151,10 +163,16 @@ public class MyUsersInterface {
 		frame.getContentPane().add(btnViewMyWeeks);
 	}
 	
-	// made static so it can be use by the other class
+
+	/**
+	 * This function lunch the command in the prompt command
+	 * made static so it can be use by the other class
+	 * @param command
+	 * @return no return
+	 */
 	public static void StartCommand(String command) {
 		try {
-			/*
+			/**
 			 * Executing the command pass in the parameters
 			 */
 			//creation du processus
