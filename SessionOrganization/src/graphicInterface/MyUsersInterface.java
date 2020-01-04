@@ -60,6 +60,8 @@ public class MyUsersInterface {
 		lblNewLabel.setBounds(341, 10, 641, 470);
 		frame.getContentPane().add(lblNewLabel);
 
+		JLabel lblA = new JLabel("A+");
+		lblA.setBackground(Color.GREEN);
 
 		JButton btnAddACourse = new JButton("Add a course"); // toujours en derniere position Boutton pour ajouter un cour
 		btnAddACourse.addActionListener(new ActionListener() {
@@ -83,6 +85,7 @@ public class MyUsersInterface {
 				lblNewLabel.setEnabled(true);
 				btnNewButton.setText(CourseName.courseName);
 				btnNewButton.setEnabled(true);
+				//lblA.setText();
 			}
 		});
 		frame.getContentPane().add(btnAddACourse);
@@ -91,8 +94,6 @@ public class MyUsersInterface {
 		lblNewLabel_1.setBounds(341, 503, 39, 22);
 		frame.getContentPane().add(lblNewLabel_1);
 		
-		JLabel lblA = new JLabel("A+");
-		lblA.setBackground(Color.GREEN);
 		lblA.setBounds(390, 506, 24, 17);
 		frame.getContentPane().add(lblA);
 		

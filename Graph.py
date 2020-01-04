@@ -24,7 +24,7 @@ PARSER.add_argument(
 
 ARGS = PARSER.parse_args()
 sheetName = ARGS.name
-print(sheetName)
+cote = 0
 
 
 if ARGS.name is not None:
@@ -42,6 +42,9 @@ if ARGS.name is not None:
             Y += [(feuille_1.cell_value(rowx=r, colx=1) * feuille_1.cell_value(rowx=r, colx=3)) / 100]  # Best marks I want
             Y2 += [(feuille_1.cell_value(rowx=r, colx=2) * feuille_1.cell_value(rowx=r, colx=3)) / 100]  # Marks that I got
 
+        for e in Y2:
+            cote += e
+        print(cote)
         plt.plot(X, Y, "o-", label="Marks I want")
         plt.plot(X, Y2, "o-", label="Actual marks")
         plt.title("My session's marks")
@@ -55,12 +58,18 @@ if ARGS.name is not None:
         x = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15])
         y = np.array([3, 3, 3, 4, 6, 4, 4, 4, 4, 6, 4, 4, 4, 6, 6])
 
+        for r in range(1, rows):
+            X += [r]
+            Y += [(feuille_1.cell_value(rowx=r, colx=1) * feuille_1.cell_value(rowx=r, colx=3)) / 100] #Best marks I want
+            Y2 += [
+                (feuille_1.cell_value(rowx=r, colx=2) * feuille_1.cell_value(rowx=r, colx=3)) / 100]  # Marks that I got
         # Calcul of difficulty degree
         difficulty = 0
         for i in range(len(Y)):
             difficulty += Y[i] - Y2[i]
         difficulty = (difficulty / (rows - 1))
         # creation of the new graph depends on the difficulties
+        print(Y)
         print(difficulty)
         y2 = []
         for i in range(0, len(y)):
@@ -71,7 +80,7 @@ if ARGS.name is not None:
                    'week10', 'week11', 'week12', 'week13', 'week14', 'week15']
 
         fig = plt.figure()
-        plt.bar(x, y2, width, color='#EE6666')
+        plt.bar(x, y2, width, color='#338BFF')
         plt.title("My session works' hours")
         plt.xlabel("Week")
         plt.ylabel("Hours")
