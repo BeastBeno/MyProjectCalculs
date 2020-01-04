@@ -1,3 +1,8 @@
+/*
+ * Graphic interface to add courses .
+ * It a table where the users can feel his marks and change his evaluation name as need
+ */
+
 package graphicInterface;
 
 import java.awt.BorderLayout;
@@ -46,18 +51,9 @@ public class AddCourseInterface extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.NORTH);
 		contentPanel.setLayout(null);
-
+		
+		// Creation the array of the table it been feel up with the number of evaluation
 		Object[][] donnees = new Object[CourseName.numEvaluation][4] ;
-		/*= {
-                {"Test1", 100,90, 10},
-                {"Test2", 90, 60, 40},
-                {"Test3", 100, 80,15},
-                {"Test4", 90, 75, 35},
-                //{"Test1", "Schrödinger", Color.magenta, false, Sport.FOOTBALL},
-                //{"Delphine", "Duke", Color.yellow, false, Sport.TENNIS},
-                //{"Eric", "Trump", Color.pink, true, Sport.FOOTBALL},
-        };
-		 */
 		for(int i=0; i< CourseName.numEvaluation; i++)
 		{
 			donnees[i][0] = "Test"+(i+1);
@@ -65,7 +61,8 @@ public class AddCourseInterface extends JDialog {
 			donnees[i][2] = 90;
 			donnees[i][3] = (100 / CourseName.numEvaluation);
 		}
-
+		
+		// This is the header of my table
 		String[] entetes = {"Designation", "Wanted marks", "Marks obtained", "weighting(%)"};
 
 		table = new JTable(donnees, entetes);
@@ -81,7 +78,12 @@ public class AddCourseInterface extends JDialog {
 				{
 					public void actionPerformed(ActionEvent evt)
 					{
-						// Créer un fichier excel dans le dossier local avec le contenu de la JTable 
+						/*
+						 * By pressing OK the table is being exported to an excel sheet.
+						 * And then I run the excel sheet to let the users save his data 
+						 * he must change the expansion of the file and erase the .xls in the end of the name of the sheet
+						 * THIS MUST BE CORRECT IN A FUTURE VERSION OF THE APPLICATION
+						 */
 						exporter(table,new File("file\\"+CourseName.courseName+"_"+"data.xls"));
 						String command = "cmd /c cd C:\\Users\\awous\\PycharmProjects\\ProjectCalculs\\MyProjectCalculs\\SessionOrganization\\file & "+CourseName.courseName+"_"+"data.xls"
 								+" & exit";
@@ -104,6 +106,7 @@ public class AddCourseInterface extends JDialog {
 			getContentPane().add(new JScrollPane(table));
 		}
 	}
+	// Exporting the table to file .xls 
 	public void exporter(JTable table, File file)
 	{
 		try

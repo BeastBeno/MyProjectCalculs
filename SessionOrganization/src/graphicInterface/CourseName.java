@@ -1,3 +1,7 @@
+/*
+ * this GUI will help the users to enter the name of thhe course we want to add as well as the number
+ * of evaluation
+ */
 package graphicInterface;
 
 import java.awt.BorderLayout;
@@ -74,6 +78,9 @@ public class CourseName extends JDialog {
 				JButton okButton = new JButton("OK");
 				okButton.addActionListener(new ActionListener()
 				{
+					/*
+					 * We simply taking the name of the course and the number of evaluation
+					 */
 					public void actionPerformed(ActionEvent evt)
 					{
 						courseName = textField.getText();

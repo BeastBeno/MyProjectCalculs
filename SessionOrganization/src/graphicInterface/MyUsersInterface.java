@@ -1,3 +1,12 @@
+/*
+ * This is the principal interface of our users .
+ * It make with :
+ * 				 button to add courses
+ * 				 A label to show the graphics
+ * 				 A button to change marks
+ * 				 A button to change the view of the graph(Switch between hours and marks)
+ * 				 A label to show the rating of the courses	 
+ */
 package graphicInterface;
 
 import java.awt.EventQueue;
@@ -47,7 +56,7 @@ public class MyUsersInterface {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
-
+		//this button will be use to add new courses to the student session
 		JButton btnNewButton = new  JButton("Name of the course");
 		btnNewButton.setEnabled(false);
 
@@ -59,10 +68,12 @@ public class MyUsersInterface {
 		lblNewLabel.setIcon(new ImageIcon("file\\Python_MySession.png"));
 		lblNewLabel.setBounds(341, 10, 641, 470);
 		frame.getContentPane().add(lblNewLabel);
-
+		
+		// this label is set for the rating of the courses. It will upgrade as soon as the student change his marks
 		JLabel lblA = new JLabel("A+");
 		lblA.setBackground(Color.GREEN);
-
+		
+		//Button add courses to permit the student to add new courses to his session
 		JButton btnAddACourse = new JButton("Add a course"); // toujours en derniere position Boutton pour ajouter un cour
 		btnAddACourse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -76,10 +87,17 @@ public class MyUsersInterface {
 		btnAddACourse.setBounds(10, 519, 116, 35);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				/*
+				 * When the user click on the course button he is lunching the prompt command and will being connecting 
+				 * to the Python program
+				 * We are also making sure the python environment is correctly equipt, Cause we need to install some module
+				 * to lunch the application 
+				 */
 				//passage par argument de la commande à lancer
 				String command = "cmd /c cd C:\\Users\\awous\\PycharmProjects\\ProjectCalculs\\MyProjectCalculs & pip install xlrd"
 						+ "& python -m pip install numpy & python -m pip install matplotlib & Graph.py "+CourseName.courseName+
 						" -m A+ & exit";
+				//We are calling the start command to execute the command in the prompt
 				StartCommand(command);
 				lblNewLabel.setIcon(new ImageIcon("file\\"+CourseName.courseName+"_MySession.png"));
 				lblNewLabel.setEnabled(true);
@@ -90,6 +108,7 @@ public class MyUsersInterface {
 		});
 		frame.getContentPane().add(btnAddACourse);
 		
+		// Label of the rating
 		JLabel lblNewLabel_1 = new JLabel("Rating :");
 		lblNewLabel_1.setBounds(341, 503, 39, 22);
 		frame.getContentPane().add(lblNewLabel_1);
@@ -97,9 +116,12 @@ public class MyUsersInterface {
 		lblA.setBounds(390, 506, 24, 17);
 		frame.getContentPane().add(lblA);
 		
+		// This button will help the users to correct or change their marks in the excel file
+		
 		JButton btnChangeMyMarks = new JButton("Change my marks");
 		btnChangeMyMarks.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//We simply open the excel sheet
 				String command = "cmd /c cd C:\\Users\\awous\\PycharmProjects\\ProjectCalculs\\MyProjectCalculs\\SessionOrganization\\file & "+CourseName.courseName+"_"+"data.xlsx"
 						+" & exit";
 				StartCommand(command);
@@ -111,6 +133,11 @@ public class MyUsersInterface {
 		JButton btnViewMyWeeks = new JButton("View my weeks' organization");
 		btnViewMyWeeks.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				/*
+				 * This button will help us to lunch the python program and show up the graph of the weeks orgarnisation of 
+				 * the student session 
+				 * And then we set the picture to show up the hours bar
+				 */
 				//passage par argument de la commande à lancer
 				String command = "cmd /c cd C:\\Users\\awous\\PycharmProjects\\ProjectCalculs\\MyProjectCalculs & "
 						+ "Graph.py "+CourseName.courseName+
@@ -123,8 +150,13 @@ public class MyUsersInterface {
 		btnViewMyWeeks.setBounds(635, 504, 175, 21);
 		frame.getContentPane().add(btnViewMyWeeks);
 	}
+	
+	// made static so it can be use by the other class
 	public static void StartCommand(String command) {
 		try {
+			/*
+			 * Executing the command pass in the parameters
+			 */
 			//creation du processus
 			Process p = Runtime.getRuntime().exec(command);
 			p.waitFor();
