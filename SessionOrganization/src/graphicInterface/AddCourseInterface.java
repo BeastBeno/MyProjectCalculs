@@ -22,7 +22,7 @@ public class AddCourseInterface extends JDialog {
 	 */
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
-	private JTable table;
+	private static JTable table;
 
 	/**
 	 * Launch the application.
@@ -60,10 +60,10 @@ public class AddCourseInterface extends JDialog {
 		 */
 		for(int i=0; i< CourseName.numEvaluation; i++)
 		{
-			donnees[i][0] = "Test1";
+			donnees[i][0] = "Test"+(i+1);
 			donnees[i][1] = 100;
 			donnees[i][2] = 90;
-			donnees[i][3] = 10;
+			donnees[i][3] = (100 / CourseName.numEvaluation);
 		}
 
 		String[] entetes = {"Designation", "Wanted marks", "Marks obtained", "weighting(%)"};

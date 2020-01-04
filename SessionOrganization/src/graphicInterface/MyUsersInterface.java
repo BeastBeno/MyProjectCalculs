@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
+import java.awt.Color;
 
 public class MyUsersInterface {
 
@@ -42,7 +43,7 @@ public class MyUsersInterface {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 767, 494);
+		frame.setBounds(100, 100, 1006, 601);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
@@ -56,7 +57,7 @@ public class MyUsersInterface {
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setEnabled(false);
 		lblNewLabel.setIcon(new ImageIcon("file\\Python_MySession.png"));
-		lblNewLabel.setBounds(182, 10, 561, 364);
+		lblNewLabel.setBounds(341, 10, 641, 470);
 		frame.getContentPane().add(lblNewLabel);
 
 
@@ -70,7 +71,7 @@ public class MyUsersInterface {
 				lblNewLabel.setEnabled(true);
 			}
 		});
-		btnAddACourse.setBounds(10, 412, 116, 35);
+		btnAddACourse.setBounds(10, 519, 116, 35);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//passage par argument de la commande à lancer
@@ -85,6 +86,41 @@ public class MyUsersInterface {
 			}
 		});
 		frame.getContentPane().add(btnAddACourse);
+		
+		JLabel lblNewLabel_1 = new JLabel("Rating :");
+		lblNewLabel_1.setBounds(341, 503, 39, 22);
+		frame.getContentPane().add(lblNewLabel_1);
+		
+		JLabel lblA = new JLabel("A+");
+		lblA.setBackground(Color.GREEN);
+		lblA.setBounds(390, 506, 24, 17);
+		frame.getContentPane().add(lblA);
+		
+		JButton btnChangeMyMarks = new JButton("Change my marks");
+		btnChangeMyMarks.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String command = "cmd /c cd C:\\Users\\awous\\PycharmProjects\\ProjectCalculs\\MyProjectCalculs\\SessionOrganization\\file & "+CourseName.courseName+"_"+"data.xlsx"
+						+" & exit";
+				StartCommand(command);
+			}
+		});
+		btnChangeMyMarks.setBounds(463, 504, 162, 21);
+		frame.getContentPane().add(btnChangeMyMarks);
+		
+		JButton btnViewMyWeeks = new JButton("View my weeks' organization");
+		btnViewMyWeeks.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//passage par argument de la commande à lancer
+				String command = "cmd /c cd C:\\Users\\awous\\PycharmProjects\\ProjectCalculs\\MyProjectCalculs & "
+						+ "Graph.py "+CourseName.courseName+
+						" -t A+ & exit";
+				StartCommand(command);
+				lblNewLabel.setIcon(new ImageIcon("file\\"+CourseName.courseName+"_HoursBar.png"));
+				lblNewLabel.setEnabled(true);
+			}
+		});
+		btnViewMyWeeks.setBounds(635, 504, 175, 21);
+		frame.getContentPane().add(btnViewMyWeeks);
 	}
 	public static void StartCommand(String command) {
 		try {

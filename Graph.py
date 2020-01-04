@@ -28,7 +28,7 @@ print(sheetName)
 
 
 if ARGS.name is not None:
-    document = xlrd.open_workbook("C:/Beno/Java/SessionOrganization/file/"+sheetName[0]+"_data.xlsx")
+    document = xlrd.open_workbook("SessionOrganization/file/"+sheetName[0]+"_data.xlsx")
     feuille_1 = document.sheet_by_index(0)
     cols = feuille_1.ncols
     rows = feuille_1.nrows
@@ -48,7 +48,7 @@ if ARGS.name is not None:
         plt.xlabel("Evaluation number")
         plt.ylabel("Evaluation marks in percent %")
         plt.legend()
-        plt.savefig("C:/Beno/Java/SessionOrganization/file/"+sheetName[0]+'_MySession.png')
+        plt.savefig("SessionOrganization/file/"+sheetName[0]+'_MySession.png')
         plt.show()
 
     if ARGS.hours is not None:
@@ -76,7 +76,7 @@ if ARGS.name is not None:
         plt.xlabel("Week")
         plt.ylabel("Hours")
         pylab.xticks(x, BarName, rotation=40)
-        plt.savefig("C:/Beno/Java/SessionOrganization/file/"+sheetName[0]+"_HoursBar")
+        plt.savefig("SessionOrganization/file/"+sheetName[0]+"_HoursBar")
         plt.show()
 
     if ARGS.best is not None:
@@ -92,6 +92,6 @@ if ARGS.name is not None:
         plt.xlabel("Week")
         plt.ylabel("Hours")
         pylab.xticks(x, BarName, rotation=40)
-        plt.savefig("C:/Beno/Java/SessionOrganization/file/"+sheetName[0]+"_BestHoursBar.png")
+        plt.savefig("SessionOrganization/file/"+sheetName[0]+"_BestHoursBar.png")
         plt.show()
 

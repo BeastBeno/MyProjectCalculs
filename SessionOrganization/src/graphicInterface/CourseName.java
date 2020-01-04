@@ -63,7 +63,7 @@ public class CourseName extends JDialog {
 
 		textField_1 = new JTextField();
 		textField_1.setText("1");
-		textField_1.setBounds(178, 169, 96, 19);
+		textField_1.setBounds(178, 169, 25, 30);
 		contentPanel.add(textField_1);
 		textField_1.setColumns(10);
 		{
