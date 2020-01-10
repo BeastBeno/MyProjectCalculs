@@ -1,4 +1,4 @@
-# ProjectCalculs
+# Planification of my session
 This directory is create for a personal projet. 
             The goal is simple represent my school note in a graphique and be able to shows me the number of hours I need to spend per weeks to attend my score I pre-defined .
 
