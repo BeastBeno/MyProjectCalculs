@@ -26,7 +26,7 @@ import java.awt.Color;
  */
 public class MyUsersInterface {
 
-	private JFrame frame;
+	private JFrame frmMyPlan;
 
 	/**
 	 * Launch the application.
@@ -36,7 +36,7 @@ public class MyUsersInterface {
 			public void run() {
 				try {
 					MyUsersInterface window = new MyUsersInterface();
-					window.frame.setVisible(true);
+					window.frmMyPlan.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -55,23 +55,24 @@ public class MyUsersInterface {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 1006, 601);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		frmMyPlan = new JFrame();
+		frmMyPlan.setTitle("My Plan");
+		frmMyPlan.setBounds(100, 100, 1006, 601);
+		frmMyPlan.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmMyPlan.getContentPane().setLayout(null);
 
 		//this button will be use to add new courses to the student session
 		JButton btnNewButton = new  JButton("Name of the course");
 		btnNewButton.setEnabled(false);
 
 		btnNewButton.setBounds(23, 24, 116, 28);
-		frame.getContentPane().add(btnNewButton);
+		frmMyPlan.getContentPane().add(btnNewButton);
 		//On ajoute un label pour pouvoir ajouter une image
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setEnabled(false);
 		lblNewLabel.setIcon(new ImageIcon("file\\Python_MySession.png"));
 		lblNewLabel.setBounds(341, 10, 641, 470);
-		frame.getContentPane().add(lblNewLabel);
+		frmMyPlan.getContentPane().add(lblNewLabel);
 		
 		// this label is set for the rating of the courses. It will upgrade as soon as the student change his marks
 		JLabel lblA = new JLabel("A+");
@@ -112,15 +113,15 @@ public class MyUsersInterface {
 				//lblA.setText();
 			}
 		});
-		frame.getContentPane().add(btnAddACourse);
+		frmMyPlan.getContentPane().add(btnAddACourse);
 		
 		// Label of the rating
 		JLabel lblNewLabel_1 = new JLabel("Rating :");
 		lblNewLabel_1.setBounds(341, 503, 39, 22);
-		frame.getContentPane().add(lblNewLabel_1);
+		frmMyPlan.getContentPane().add(lblNewLabel_1);
 		
 		lblA.setBounds(390, 506, 24, 17);
-		frame.getContentPane().add(lblA);
+		frmMyPlan.getContentPane().add(lblA);
 		
 		// This button will help the users to correct or change their marks in the excel file
 		
@@ -134,7 +135,7 @@ public class MyUsersInterface {
 			}
 		});
 		btnChangeMyMarks.setBounds(463, 504, 162, 21);
-		frame.getContentPane().add(btnChangeMyMarks);
+		frmMyPlan.getContentPane().add(btnChangeMyMarks);
 		
 		JButton btnViewMyWeeks = new JButton("View my weeks' organization");
 		btnViewMyWeeks.addActionListener(new ActionListener() {
@@ -160,7 +161,12 @@ public class MyUsersInterface {
 			}
 		});
 		btnViewMyWeeks.setBounds(635, 504, 175, 21);
-		frame.getContentPane().add(btnViewMyWeeks);
+		frmMyPlan.getContentPane().add(btnViewMyWeeks);
+		
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon("C:\\Users\\awous\\PycharmProjects\\ProjectCalculs\\MyProjectCalculs\\SessionOrganization\\file\\wallpaper.jpg"));
+		label.setBounds(0, 0, 992, 564);
+		frmMyPlan.getContentPane().add(label);
 	}
 	
 

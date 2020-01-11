@@ -19,6 +19,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.ImageIcon;
+import java.awt.Color;
 
 public class CourseName extends JDialog {
 
@@ -56,6 +58,7 @@ public class CourseName extends JDialog {
 		contentPanel.setLayout(null);
 		{
 			JLabel lblNewLabel = new JLabel("Name of the course");
+			lblNewLabel.setForeground(Color.GREEN);
 			lblNewLabel.setBounds(35, 100, 104, 30);
 			contentPanel.add(lblNewLabel);
 		}
@@ -66,6 +69,7 @@ public class CourseName extends JDialog {
 		textField.setColumns(10);
 
 		JLabel lblNumberOfEvaluation = new JLabel("Number of evaluation");
+		lblNumberOfEvaluation.setForeground(Color.GREEN);
 		lblNumberOfEvaluation.setBounds(35, 169, 104, 19);
 		contentPanel.add(lblNumberOfEvaluation);
 
@@ -74,6 +78,11 @@ public class CourseName extends JDialog {
 		textField_1.setBounds(178, 169, 25, 30);
 		contentPanel.add(textField_1);
 		textField_1.setColumns(10);
+		
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon("C:\\Users\\awous\\PycharmProjects\\ProjectCalculs\\MyProjectCalculs\\SessionOrganization\\file\\wallpaper.jpg"));
+		label.setBounds(0, 0, 436, 267);
+		contentPanel.add(label);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
