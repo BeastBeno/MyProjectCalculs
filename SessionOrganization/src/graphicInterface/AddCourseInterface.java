@@ -89,8 +89,8 @@ public class AddCourseInterface extends JDialog {
 						 * <p>
 						 * <b>Note:</b>THIS MUST BE CORRECT IN A FUTURE VERSION OF THE APPLICATION
 						 */
-						exporter(table,new File("file\\"+CourseName.courseName+"_"+"data.xls"));
-						String command = "cmd /c cd C:\\Users\\awous\\PycharmProjects\\ProjectCalculs\\MyProjectCalculs\\SessionOrganization\\file & "+CourseName.courseName+"_"+"data.xls"
+						exporter(table,new File("res\\image\\"+CourseName.courseName+"_"+"data.xls"));
+						String command = "cmd /c cd res\\image\\ & "+CourseName.courseName+"_"+"data.xls"
 								+" & exit";
 						MyUsersInterface.StartCommand(command);
 						//getContentPane().setVisible(false);

@@ -1,5 +1,5 @@
 /**
- * this GUI will help the users to enter the name of thhe course we want to add as well as the number
+ * this GUI will help the users to enter the name of the course we want to add as well as the number
  * of evaluation
  * 
  * @author  Dietz-Bénony AWOUSSI
@@ -80,7 +80,7 @@ public class CourseName extends JDialog {
 		textField_1.setColumns(10);
 		
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon("C:\\Users\\awous\\PycharmProjects\\ProjectCalculs\\MyProjectCalculs\\SessionOrganization\\file\\wallpaper.jpg"));
+		label.setIcon(new ImageIcon(CourseName.class.getResource("/image/wallpaper.jpg")));
 		label.setBounds(0, 0, 436, 267);
 		contentPanel.add(label);
 		{
