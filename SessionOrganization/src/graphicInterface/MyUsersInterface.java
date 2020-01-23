@@ -10,6 +10,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JProgressBar;
+import java.awt.Font;
 
 /**
  * This is the principal interface of our users .
@@ -67,38 +69,47 @@ public class MyUsersInterface {
 		frmMyPlan.setBounds(100, 100, 1006, 601);
 		frmMyPlan.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmMyPlan.getContentPane().setLayout(null);
+		JProgressBar progressBar = new JProgressBar();
+		progressBar.setForeground(Color.GREEN);
+		progressBar.setBounds(85, 384, 162, 11);
+		frmMyPlan.getContentPane().add(progressBar);
+		
+		JButton btnLoadSession = new JButton("Load Session");
+		btnLoadSession.setBackground(new Color(255, 0, 255));
+		btnLoadSession.setBounds(820, 504, 132, 32);
+		frmMyPlan.getContentPane().add(btnLoadSession);
 
 
 		//this button will be use to add new courses to the student session
 		JButton btnNewButton = new  JButton("Name of the course");
 		btnNewButton.setEnabled(false);
 
-		btnNewButton.setBounds(23, 24, 116, 28);
+		btnNewButton.setBounds(23, 24, 116, 32);
 		frmMyPlan.getContentPane().add(btnNewButton);
 
 		JButton btnCourse = new JButton("Course_2");
 		btnCourse.setEnabled(false);
-		btnCourse.setBounds(23, 90, 116, 35);
+		btnCourse.setBounds(199, 21, 116, 35);
 		frmMyPlan.getContentPane().add(btnCourse);
 
 		JButton btnCourse_1 = new JButton("Course_3");
 		btnCourse_1.setEnabled(false);
-		btnCourse_1.setBounds(23, 180, 116, 35);
+		btnCourse_1.setBounds(23, 100, 116, 35);
 		frmMyPlan.getContentPane().add(btnCourse_1);
 
 		JButton btnCourse_2 = new JButton("Course_4");
 		btnCourse_2.setEnabled(false);
-		btnCourse_2.setBounds(23, 270, 116, 35);
+		btnCourse_2.setBounds(199, 100, 116, 35);
 		frmMyPlan.getContentPane().add(btnCourse_2);
 
 		JButton btnCourse_3 = new JButton("Course_5");
 		btnCourse_3.setEnabled(false);
-		btnCourse_3.setBounds(23, 360, 116, 35);
+		btnCourse_3.setBounds(23, 191, 116, 35);
 		frmMyPlan.getContentPane().add(btnCourse_3);
 
 		JButton btnCourse_4 = new JButton("Course_6");
 		btnCourse_4.setEnabled(false);
-		btnCourse_4.setBounds(23, 450, 116, 30);
+		btnCourse_4.setBounds(199, 191, 116, 35);
 		frmMyPlan.getContentPane().add(btnCourse_4);
 		//On ajoute un label pour pouvoir ajouter une image
 		JLabel lblNewLabel = new JLabel("");
@@ -109,12 +120,13 @@ public class MyUsersInterface {
 
 		// this label is set for the rating of the courses. It will upgrade as soon as the student change his marks
 		JLabel lblA = new JLabel("A+");
+		lblA.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblA.setForeground(Color.GREEN);
 		lblA.setBackground(Color.GREEN);
 
 		//Button add courses to permit the student to add new courses to his session
 		JButton btnAddACourse = new JButton("Add a course"); // toujours en derniere position Boutton pour ajouter un cour
-		btnAddACourse.setBackground(Color.GREEN);
+		btnAddACourse.setBackground(new Color(51, 255, 51));
 		btnAddACourse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				switch(nbCourse) {
@@ -168,16 +180,20 @@ public class MyUsersInterface {
 					btnCourse_4.setText(CourseName.courseName);
 					btnCourse_4.setEnabled(true);
 					lblNewLabel.setEnabled(true);
+					progressBar.setForeground(Color.RED);
 					break;
 				}
 				default:
+					btnAddACourse.setBackground(Color.RED);
+					progressBar.setForeground(Color.RED);
 					System.out.println("You can only add six courses for the moment");// Will be replace with a label
 				}
-
+				
 				nbCourse++;
+				progressBar.setValue(nbCourse*10);
 			}
 		});
-		btnAddACourse.setBounds(10, 519, 116, 35);
+		btnAddACourse.setBounds(85, 337, 162, 46);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(course1 == 0)
@@ -270,15 +286,17 @@ public class MyUsersInterface {
 		});
 		// Label of the rating
 		JLabel lblNewLabel_1 = new JLabel("Rating :");
-		lblNewLabel_1.setBounds(328, 503, 63, 22);
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblNewLabel_1.setBounds(328, 503, 63, 33);
 		frmMyPlan.getContentPane().add(lblNewLabel_1);
 
-		lblA.setBounds(390, 506, 24, 17);
+		lblA.setBounds(390, 506, 40, 30);
 		frmMyPlan.getContentPane().add(lblA);
 
 		// This button will help the users to correct or change their marks in the excel file
 
 		JButton btnChangeMyMarks = new JButton("Change my marks");
+		btnChangeMyMarks.setBackground(new Color(222, 184, 135));
 		btnChangeMyMarks.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//We simply open the excel sheet
@@ -287,10 +305,11 @@ public class MyUsersInterface {
 				StartCommand(command);
 			}
 		});
-		btnChangeMyMarks.setBounds(463, 504, 162, 21);
+		btnChangeMyMarks.setBounds(463, 504, 162, 32);
 		frmMyPlan.getContentPane().add(btnChangeMyMarks);
 
 		JButton btnViewMyWeeks = new JButton("View my weeks' organization");
+		btnViewMyWeeks.setBackground(Color.CYAN);
 		btnViewMyWeeks.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				/**
@@ -337,13 +356,14 @@ public class MyUsersInterface {
 				t2.start();
 			}
 		});
-		btnViewMyWeeks.setBounds(635, 504, 175, 21);
+		btnViewMyWeeks.setBounds(635, 504, 175, 32);
 		frmMyPlan.getContentPane().add(btnViewMyWeeks);
 
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon(MyUsersInterface.class.getResource("/image/wallpaper.jpg")));
 		label.setBounds(0, 0, 992, 564);
 		frmMyPlan.getContentPane().add(label);
+	
 	}
 
 	public static void InnitButton(JButton myButton, JLabel graphs) {
@@ -430,5 +450,7 @@ public class MyUsersInterface {
 			System.out.println("\n" + command + ": commande inconnu ");
 		}
 	}
-
 }
+
+
+//Ecrire le choix de chaque utilisateur dans un fichier et apres faire une liste pour selectionner la sauvegarde
