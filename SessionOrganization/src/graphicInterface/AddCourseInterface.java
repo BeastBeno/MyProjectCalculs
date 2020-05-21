@@ -93,7 +93,6 @@ public class AddCourseInterface extends JDialog {
 						String command = "cmd /c cd res\\image\\ & "+CourseName.courseName+"_"+"data.xls"
 								+" & exit";
 						MyUsersInterface.StartCommand(command);
-						//getContentPane().setVisible(false);
 						dispose();
 					}
 				});
