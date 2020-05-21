@@ -49,16 +49,19 @@ public class ConnectionInterface extends JDialog {
 		setTitle("Connection");
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBackground(Color.DARK_GRAY);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		
 		JLabel lblUserName = new JLabel("Username");
+		lblUserName.setForeground(new Color(222, 184, 135));
 		lblUserName.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblUserName.setBounds(42, 76, 91, 49);
 		contentPanel.add(lblUserName);
 		
 		JLabel lblPassword = new JLabel("Password");
+		lblPassword.setForeground(new Color(222, 184, 135));
 		lblPassword.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblPassword.setBounds(42, 165, 77, 25);
 		contentPanel.add(lblPassword);
@@ -75,6 +78,7 @@ public class ConnectionInterface extends JDialog {
 		contentPanel.add(passwordField);
 		
 		JLabel lblNewLabel = new JLabel("My Plan - Login");
+		lblNewLabel.setForeground(new Color(0, 255, 0));
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		lblNewLabel.setBounds(42, 24, 200, 42);
 		contentPanel.add(lblNewLabel);
