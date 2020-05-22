@@ -49,6 +49,7 @@ public class AddCourseInterface extends JDialog {
 	 * Create the dialog.
 	 */
 	public AddCourseInterface() {
+		setUndecorated(true);
 		setBounds(100, 100, 625, 448);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -104,6 +105,16 @@ public class AddCourseInterface extends JDialog {
 			{
 				JButton cancelButton = new JButton("Cancel");
 				cancelButton.setActionCommand("Cancel");
+				cancelButton.addActionListener(new ActionListener()
+				{
+					/**
+					 * We simply taking the name of the course and the number of evaluation
+					 */
+					public void actionPerformed(ActionEvent evt)
+					{
+						dispose();
+					}
+				});
 				buttonPane.add(cancelButton);
 			}
 

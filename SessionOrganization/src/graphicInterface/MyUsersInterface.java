@@ -13,9 +13,11 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenuBar;
+import javax.swing.JOptionPane;
 import javax.swing.JProgressBar;
 import javax.swing.JRadioButton;
 import javax.swing.border.LineBorder;
+import java.awt.Window.Type;
 
 /**
  * This is the principal interface of our users .
@@ -502,10 +504,24 @@ public class MyUsersInterface {
 
 	    label_1.setBorder(line);
 		frmMyPlan.getContentPane().add(label_1);
-		
+		SetUp();
 
 		
 			
+	}
+	
+	public static void SetUp() {
+		
+		String command = "cmd /c cd src\\graphicInterface\\ & pip install xlrd"
+				+ "& python -m pip install numpy & python -m pip install matplotlib & python -m pip install pandas & exit";
+		try {
+			StartCommand(command);
+
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 	}
 
 	public static void InnitButton(JButton myButton, JLabel graphs, JLabel weekGraph,JLabel performanceGraph, JLabel aptitudeGraph) {
@@ -519,9 +535,8 @@ public class MyUsersInterface {
 		 * <p>
 		 */
 		//passage par argument de la commande à lancer : Tracer les deux courbes
-		String command = "cmd /c cd C:\\Users\\awous\\PycharmProjects\\ProjectCalculs\\MyProjectCalculs & pip install xlrd"
-				+ "& python -m pip install numpy & python -m pip install matplotlib & Graph.py "+CourseName.courseName+
-				" -m A+ & Graph.py "+CourseName.courseName+" -t A+ & exit";
+		//System.out.println(System.getProperty("user.dir"));
+		String command = "cmd /c cd src\\graphicInterface\\ & Graph.py "+CourseName.courseName+" -m A+ & Graph.py "+CourseName.courseName+" -t A+ & exit";
 		//We are calling the start command to execute the command in the prompt
 		//Use of thread will permit to to the application to update the image before setting the label
 		final Thread t1 = new Thread(){

@@ -16,6 +16,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
+import java.awt.Window.Type;
 
 public class ConnectionInterface extends JDialog {
 
@@ -46,6 +47,7 @@ public class ConnectionInterface extends JDialog {
 	 * Create the dialog.
 	 */
 	public ConnectionInterface() {
+		setUndecorated(true);
 		setTitle("Connection");
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
@@ -84,6 +86,7 @@ public class ConnectionInterface extends JDialog {
 		contentPanel.add(lblNewLabel);
 		{
 			JPanel buttonPane = new JPanel();
+			buttonPane.setBackground(Color.DARK_GRAY);
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
@@ -124,6 +127,16 @@ public class ConnectionInterface extends JDialog {
 			{
 				JButton cancelButton = new JButton("Cancel");
 				cancelButton.setActionCommand("Cancel");
+				cancelButton.addActionListener(new ActionListener()
+				{
+					/**
+					 * We simply taking the name of the course and the number of evaluation
+					 */
+					public void actionPerformed(ActionEvent evt)
+					{
+						dispose();
+					}
+				});
 				buttonPane.add(cancelButton);
 			}
 		}
