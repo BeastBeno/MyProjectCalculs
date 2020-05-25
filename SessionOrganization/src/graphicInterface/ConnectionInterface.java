@@ -80,7 +80,7 @@ public class ConnectionInterface extends JDialog {
 		contentPanel.add(passwordField);
 		
 		JLabel lblNewLabel = new JLabel("My Plan - Login");
-		lblNewLabel.setForeground(new Color(0, 255, 0));
+		lblNewLabel.setForeground(new Color(30, 144, 255));
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		lblNewLabel.setBounds(42, 24, 200, 42);
 		contentPanel.add(lblNewLabel);

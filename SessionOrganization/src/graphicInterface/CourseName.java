@@ -21,6 +21,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.ImageIcon;
 import java.awt.Color;
+import java.awt.Font;
 
 public class CourseName extends JDialog {
 
@@ -51,15 +52,18 @@ public class CourseName extends JDialog {
 	 * Create the dialog.
 	 */
 	public CourseName() {
+		setUndecorated(true);
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBackground(Color.DARK_GRAY);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		{
 			JLabel lblNewLabel = new JLabel("Name of the course");
-			lblNewLabel.setForeground(Color.GREEN);
-			lblNewLabel.setBounds(35, 100, 104, 30);
+			lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			lblNewLabel.setForeground(new Color(30, 144, 255));
+			lblNewLabel.setBounds(10, 88, 158, 42);
 			contentPanel.add(lblNewLabel);
 		}
 
@@ -69,8 +73,9 @@ public class CourseName extends JDialog {
 		textField.setColumns(10);
 
 		JLabel lblNumberOfEvaluation = new JLabel("Number of evaluation");
-		lblNumberOfEvaluation.setForeground(Color.GREEN);
-		lblNumberOfEvaluation.setBounds(35, 169, 104, 19);
+		lblNumberOfEvaluation.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblNumberOfEvaluation.setForeground(new Color(30, 144, 255));
+		lblNumberOfEvaluation.setBounds(10, 169, 158, 30);
 		contentPanel.add(lblNumberOfEvaluation);
 
 		textField_1 = new JTextField();
@@ -78,13 +83,9 @@ public class CourseName extends JDialog {
 		textField_1.setBounds(178, 169, 25, 30);
 		contentPanel.add(textField_1);
 		textField_1.setColumns(10);
-		
-		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(CourseName.class.getResource("/image/wallpaper.jpg")));
-		label.setBounds(0, 0, 436, 267);
-		contentPanel.add(label);
 		{
 			JPanel buttonPane = new JPanel();
+			buttonPane.setBackground(Color.DARK_GRAY);
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{

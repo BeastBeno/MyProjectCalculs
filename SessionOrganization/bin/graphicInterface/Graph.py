@@ -52,9 +52,10 @@ if ARGS.name is not None:
         # Setting the background color
         #ax.set_facecolor("grey")
         plt.style.use(['dark_background'])
+        plt.style.use(['seaborn-bright'])
         #fig.patch.set_facecolor("grey")
-        plt.plot(X, Y, "o-", label="Marks I want")
-        plt.plot(X, Y2, "o-", label="Actual marks")
+        plt.plot(X, Y, "o-", label="Marks I want", color='green')
+        plt.plot(X, Y2, "o-", label="Actual marks", color='blue')
         plt.title(sheetName[0]+" marks")
         plt.xlabel("Evaluation number")
         plt.ylabel("Evaluation marks in percent %")
@@ -64,7 +65,6 @@ if ARGS.name is not None:
 
         #Performance graph
         fig = plt.figure(figsize=(10.5, 3))
-        plt.style.use(['seaborn-bright'])
         plt.plot(X, Y2, "o-", label="Personal performance")
         plt.title(sheetName[0]+" performance")
         plt.xlabel("Evaluation number")
@@ -162,7 +162,9 @@ if ARGS.name is not None:
        # ax.set_facecolor("grey")
         #fig.patch.set_facecolor("grey")
         plt.style.use(['dark_background'])
-        plt.bar(x, y2, width, color='#338BFF')
+        #338BFF(0.1, 0.1, 0.1, 0.1)
+        plt.bar(x, y2, width, color=(0.1, 0.1, 0.1, 0.1), alpha=0.7, edgecolor='red')
+        plt.grid(b=True, which='major', color='#666666', linestyle='-', alpha=0.3)
         plt.title(sheetName[0]+" hours")
         plt.xlabel("Week")
         plt.ylabel("Hours")

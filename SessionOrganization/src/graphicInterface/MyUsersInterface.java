@@ -84,7 +84,7 @@ public class MyUsersInterface {
 		JLabel label = new JLabel("");
 		label.setEnabled(false);
 		label.setIcon(new ImageIcon(MyUsersInterface.class.getResource("/image/next_MyPerformance.png")));
-		label.setBounds(246, 88, 1057, 269);
+		label.setBounds(246, 88, 982, 269);
 		frmMyPlan.getContentPane().add(label);
 		
 		JLabel label_3 = new JLabel("");
@@ -280,7 +280,7 @@ public class MyUsersInterface {
 					@Override
 					public void run(){
 						lblLogIn.setText(ConnectionInterface.userName);
-						System.out.println(ConnectionInterface.userName);
+						System.out.println(ConnectionInterface.userName+"voila");
 						lblLogIn.setFont(new Font("Tw Cen MT", Font.ITALIC, 20));
 						lblLogIn.setBounds(89, 79, 124, 37);
 					}
