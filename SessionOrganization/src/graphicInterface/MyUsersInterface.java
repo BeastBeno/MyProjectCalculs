@@ -1,6 +1,5 @@
 package graphicInterface;
 
-import java.awt.Choice;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -8,16 +7,22 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.InputStream;
 
+import javax.swing.AbstractButton;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JMenuBar;
-import javax.swing.JOptionPane;
 import javax.swing.JProgressBar;
 import javax.swing.JRadioButton;
+import javax.swing.SwingUtilities;
 import javax.swing.border.LineBorder;
-import java.awt.Window.Type;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseMotionAdapter;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
 /**
  * This is the principal interface of our users .
@@ -42,6 +47,7 @@ public class MyUsersInterface {
 	public static int course4 = 0;
 	public static int course5 = 0;
 	public static int course6 = 0;
+	static int compteurRefresh = 1;
 
 	/**
 	 * Launch the application.
@@ -504,6 +510,40 @@ public class MyUsersInterface {
 
 	    label_1.setBorder(line);
 		frmMyPlan.getContentPane().add(label_1);
+		
+		JLabel label_4 = new JLabel("");
+		label_4.addMouseMotionListener(new MouseMotionAdapter() {
+			@Override
+			public void mouseMoved(MouseEvent e) {
+				if(compteurRefresh % 2 == 0)
+					label_4.setBounds(1142, 10, 33, 36);
+				else
+					label_4.setBounds(1142, 20, 33, 36);
+				compteurRefresh++;
+				
+			}
+		});
+		label_4.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				SwingUtilities.updateComponentTreeUI(frmMyPlan);
+				System.out.println("benoooooo");
+			}
+		});
+		label_4.setIcon(new ImageIcon(MyUsersInterface.class.getResource("/image/refresh (3).png")));
+		label_4.setBounds(1142, 10, 33, 36);
+		label_4.revalidate();
+		frmMyPlan.getContentPane().add(label_4);
+		
+		JLabel label_5 = new JLabel("");
+		label_5.setIcon(new ImageIcon(MyUsersInterface.class.getResource("/image/notification.png")));
+		label_5.setBounds(1183, 10, 45, 36);
+		frmMyPlan.getContentPane().add(label_5);
+		
+		JLabel label_6 = new JLabel("");
+		label_6.setIcon(new ImageIcon(MyUsersInterface.class.getResource("/image/comment.png")));
+		label_6.setBounds(1096, 10, 33, 36);
+		frmMyPlan.getContentPane().add(label_6);
 		SetUp();
 
 		
