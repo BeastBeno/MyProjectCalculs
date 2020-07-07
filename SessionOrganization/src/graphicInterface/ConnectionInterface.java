@@ -16,7 +16,6 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
-import java.awt.Window.Type;
 
 public class ConnectionInterface extends JDialog {
 
@@ -29,12 +28,14 @@ public class ConnectionInterface extends JDialog {
 	private JPasswordField passwordField;
 	public static String userName = "";
 	public static String password ;
+	public static boolean informationCorrect = false;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main() {
 		try {
+			informationCorrect = false;
 			ConnectionInterface dialog = new ConnectionInterface();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
@@ -104,6 +105,7 @@ public class ConnectionInterface extends JDialog {
 				        	lblUserName.setForeground(Color.GREEN);
 				        	lblPassword.setForeground(Color.GREEN);
 				            JOptionPane.showMessageDialog(null,"User, Found Access Granted!");
+				            informationCorrect = true;
 				            dispose();
 				        }
 				        else if (login(userName, password) >1){
@@ -116,10 +118,8 @@ public class ConnectionInterface extends JDialog {
 				            	lblUserName.setForeground(Color.RED);
 				            JOptionPane.showMessageDialog(null, "user doesn't exsist. ");
 				             }
-						//getContentPane().setVisible(false);
 					}
 				});
-				//okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 
 				getRootPane().setDefaultButton(okButton);
@@ -134,6 +134,7 @@ public class ConnectionInterface extends JDialog {
 					 */
 					public void actionPerformed(ActionEvent evt)
 					{
+						informationCorrect = true;
 						dispose();
 					}
 				});

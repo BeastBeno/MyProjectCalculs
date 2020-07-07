@@ -3,11 +3,15 @@ package graphicInterface;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 import java.io.InputStream;
+import java.util.ArrayList;
 
-import javax.swing.AbstractButton;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -16,13 +20,9 @@ import javax.swing.JProgressBar;
 import javax.swing.JRadioButton;
 import javax.swing.SwingUtilities;
 import javax.swing.border.LineBorder;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseMotionAdapter;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
+
+import com.sun.net.httpserver.Authenticator.Success;
+
 
 /**
  * This is the principal interface of our users .
@@ -40,6 +40,7 @@ import java.awt.event.FocusEvent;
 public class MyUsersInterface {
 
 	private JFrame frmMyPlan;
+	ArrayList<JButton> coursesList = new ArrayList<JButton>();
 	public static int nbCourse = 1;
 	public static int course1 = 0;
 	public static int course2 = 0;
@@ -48,14 +49,17 @@ public class MyUsersInterface {
 	public static int course5 = 0;
 	public static int course6 = 0;
 	static int compteurRefresh = 1;
+	private static Point point = new Point();
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void main() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					@SuppressWarnings("unused")
+					Success s=new Success(null);
 					MyUsersInterface window = new MyUsersInterface();
 					window.frmMyPlan.setVisible(true);
 				} catch (Exception e) {
@@ -69,6 +73,7 @@ public class MyUsersInterface {
 	 * Create the application.
 	 */
 	public MyUsersInterface() {
+				
 		initialize();
 	}
 
@@ -76,16 +81,30 @@ public class MyUsersInterface {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		
 		frmMyPlan = new JFrame();
-		frmMyPlan.getContentPane().setBackground(new Color(51, 51, 51));
+		frmMyPlan.setUndecorated(true);
+		frmMyPlan.getContentPane().setBackground(Color.DARK_GRAY);
 		frmMyPlan.setTitle("My Plan");
 		frmMyPlan.setBounds(100, 100, 1342, 782);
-		frmMyPlan.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmMyPlan.getContentPane().setLayout(null);
 		JProgressBar progressBar = new JProgressBar();
 		progressBar.setForeground(Color.GREEN);
 		progressBar.setBounds(36, 690, 162, 11);
 		frmMyPlan.getContentPane().add(progressBar);
+		
+		frmMyPlan.addMouseListener(new MouseAdapter() {
+	        public void mousePressed(MouseEvent e) {
+	          point.x = e.getX();
+	          point.y = e.getY();
+	        }
+	      });
+		frmMyPlan.addMouseMotionListener(new MouseMotionAdapter() {
+	        public void mouseDragged(MouseEvent e) {
+	          Point p = frmMyPlan.getLocation();
+	          frmMyPlan.setLocation(p.x + e.getX() - point.x, p.y + e.getY() - point.y);
+	        }
+	      });
 		
 		JLabel label = new JLabel("");
 		label.setEnabled(false);
@@ -98,6 +117,16 @@ public class MyUsersInterface {
 		label_3.setEnabled(false);
 		label_3.setBounds(965, 375, 353, 341);
 		frmMyPlan.getContentPane().add(label_3);
+		
+		JLabel label_7 = new JLabel("");
+		label_7.setIcon(new ImageIcon(MyUsersInterface.class.getResource("/image/icons8-multiplier-26.png")));
+		label_7.setBounds(10, 10, 36, 27);
+		label_7.addMouseListener(new MouseAdapter() {
+	        public void mousePressed(MouseEvent e) {
+	        	 System.exit(0);
+	        }
+	      });
+		frmMyPlan.getContentPane().add(label_7);
 
 
 		//this button will be use to add new courses to the student session
@@ -147,7 +176,7 @@ public class MyUsersInterface {
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setEnabled(false);
 		lblNewLabel.setIcon(new ImageIcon(MyUsersInterface.class.getResource("/image/next_MySession.png")));
-		lblNewLabel.setBounds(246, 375, 346, 341);
+		lblNewLabel.setBounds(224, 375, 346, 341);
 		frmMyPlan.getContentPane().add(lblNewLabel);
 
 		// this label is set for the rating of the courses. It will upgrade as soon as the student change his marks
@@ -173,6 +202,7 @@ public class MyUsersInterface {
 		rdbtnChange.setBounds(41, 218, 132, 21);
 		rdbtnChange.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				switch(nbCourse) {
 				case 1:
 				{
@@ -279,16 +309,13 @@ public class MyUsersInterface {
 					t1.join();
 
 				} catch (InterruptedException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 				final Thread t2 = new Thread(){
 					@Override
 					public void run(){
-						lblLogIn.setText(ConnectionInterface.userName);
-						System.out.println(ConnectionInterface.userName+"voila");
-						lblLogIn.setFont(new Font("Tw Cen MT", Font.ITALIC, 20));
-						lblLogIn.setBounds(89, 79, 124, 37);
+						GuiFunction.WaitForConnection();
+						GuiFunction.UpdateUserName(lblLogIn);
 					}
 				};
 				t2.start();
@@ -323,79 +350,6 @@ public class MyUsersInterface {
 		rdbtnDashboard.setBackground(new Color(51, 102, 255));
 		rdbtnDashboard.setBounds(41, 156, 132, 21);
 		frmMyPlan.getContentPane().add(rdbtnDashboard);
-		/*
-		//Button add courses to permit the student to add new courses to his session
-		JButton btnAddACourse = new JButton("Add a course"); // toujours en derniere position Boutton pour ajouter un cour
-		btnAddACourse.setBackground(new Color(51, 255, 51));
-		btnAddACourse.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				switch(nbCourse) {
-				case 1:
-				{
-					CourseName.main();
-					btnNewButton.setText(CourseName.courseName);
-					btnNewButton.setEnabled(true);
-					lblNewLabel.setEnabled(true);
-					break;
-				}
-				case 2:
-				{
-					CourseName.main();
-					btnCourse.setText(CourseName.courseName);
-					btnCourse.setEnabled(true);
-					lblNewLabel.setEnabled(true);
-					break;
-				}
-
-				case 3:
-				{
-					CourseName.main();
-					btnCourse_1.setText(CourseName.courseName);
-					btnCourse_1.setEnabled(true);
-					lblNewLabel.setEnabled(true);
-					break;
-				}
-
-				case 4:
-				{
-					CourseName.main();
-					btnCourse_2.setText(CourseName.courseName);
-					btnCourse_2.setEnabled(true);
-					lblNewLabel.setEnabled(true);
-					break;
-				}
-
-				case 5:
-				{
-					CourseName.main();
-					btnCourse_3.setText(CourseName.courseName);
-					btnCourse_3.setEnabled(true);
-					lblNewLabel.setEnabled(true);
-					break;
-				}
-
-				case 6:
-				{
-					CourseName.main();
-					btnCourse_4.setText(CourseName.courseName);
-					btnCourse_4.setEnabled(true);
-					lblNewLabel.setEnabled(true);
-					progressBar.setForeground(Color.RED);
-					break;
-				}
-				default:
-					btnAddACourse.setBackground(Color.RED);
-					progressBar.setForeground(Color.RED);
-					System.out.println("You can only add six courses for the moment");// Will be replace with a label
-				}
-				
-				nbCourse++;
-				progressBar.setValue(nbCourse*10);
-			}
-		});
-		
-		btnAddACourse.setBounds(981, 401, 162, 46);
-		*/
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(course1 == 0)
@@ -411,7 +365,6 @@ public class MyUsersInterface {
 				course1++;
 			}
 		});
-		//frmMyPlan.getContentPane().add(btnAddACourse);
 
 		btnCourse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {	
@@ -502,7 +455,7 @@ public class MyUsersInterface {
 		frmMyPlan.getContentPane().add(lblA);
 		
 		JLabel label_1 = new JLabel("");
-		label_1.setIcon(new ImageIcon(MyUsersInterface.class.getResource("/image/myBlue.jpg")));
+		label_1.setIcon(new ImageIcon(MyUsersInterface.class.getResource("/image/myBlue1.jpg")));
 		label_1.setForeground(Color.BLACK);
 		label_1.setBackground(Color.WHITE);
 		label_1.setBounds(20, 65, 194, 634);
@@ -544,8 +497,24 @@ public class MyUsersInterface {
 		label_6.setIcon(new ImageIcon(MyUsersInterface.class.getResource("/image/comment.png")));
 		label_6.setBounds(1096, 10, 33, 36);
 		frmMyPlan.getContentPane().add(label_6);
+		
+		JLabel label_8 = new JLabel("");
+		label_8.setIcon(new ImageIcon(MyUsersInterface.class.getResource("/image/icons8-home-24.png")));
+		label_8.setBounds(1048, 10, 36, 36);
+		label_8.addMouseListener(new MouseAdapter() {
+	        public void mousePressed(MouseEvent e) {
+	        	HomePageInterface.main(null);
+	        }
+	      });
+		frmMyPlan.getContentPane().add(label_8);
+		
+		JLabel lblSessionNme = new JLabel("Session Name");
+		lblSessionNme.setForeground(Color.CYAN);
+		lblSessionNme.setFont(new Font("Tw Cen MT", Font.ITALIC, 20));
+		lblSessionNme.setBounds(56, 10, 124, 27);
+		lblSessionNme.setText(AddSessionInterface.sessionName);
+		frmMyPlan.getContentPane().add(lblSessionNme);
 		SetUp();
-
 		
 			
 	}

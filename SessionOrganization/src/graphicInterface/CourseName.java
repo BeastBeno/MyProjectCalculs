@@ -9,19 +9,22 @@
 package graphicInterface;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.ImageIcon;
-import java.awt.Color;
-import java.awt.Font;
+import javax.swing.border.EmptyBorder;
 
 public class CourseName extends JDialog {
 
@@ -29,6 +32,7 @@ public class CourseName extends JDialog {
 	 * 
 	 */
 	private static final long serialVersionUID = 2L;
+	private static Point point = new Point();
 	private final JPanel contentPanel = new JPanel();
 	private JTextField textField;
 	private JTextField textField_1;
@@ -114,5 +118,21 @@ public class CourseName extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
+		
+		// Move the interface
+		this.addMouseListener(new MouseAdapter() {
+	        public void mousePressed(MouseEvent e) {
+	          point.x = e.getX();
+	          point.y = e.getY();
+	        }
+	      });
+		this.addMouseMotionListener(new MouseMotionAdapter() {
+	        public void mouseDragged(MouseEvent e) {
+	          Point p = getLocation();
+	          setLocation(p.x + e.getX() - point.x, p.y + e.getY() - point.y);
+	        }
+	      });
+		
 	}
-}
+	}
+
