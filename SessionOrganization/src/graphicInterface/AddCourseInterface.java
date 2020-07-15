@@ -104,14 +104,12 @@ public class AddCourseInterface extends JDialog {
 			}
 			{
 				JButton cancelButton = new JButton("Cancel");
-				cancelButton.setActionCommand("Cancel");
+				cancelButton.setActionCommand("Cancel");				
 				cancelButton.addActionListener(new ActionListener()
 				{
-					/**
-					 * We simply taking the name of the course and the number of evaluation
-					 */
 					public void actionPerformed(ActionEvent evt)
 					{
+						MyUsersInterface.nbCourse--;
 						dispose();
 					}
 				});

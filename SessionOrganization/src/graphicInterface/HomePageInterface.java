@@ -39,6 +39,7 @@ public class HomePageInterface extends JFrame {
 	private JPanel contentPane;
 	private static Point point = new Point();
 	public static int nbSession = 0;
+	public static int nbSessionName = 0;
 	public static ArrayList<JLabel> sessionList = new ArrayList<JLabel>();
 	public static ArrayList<JLabel> sessionNameList = new ArrayList<JLabel>();
     public static ArrayList<Rectangle> sessionPosition = new ArrayList<Rectangle>();
@@ -175,6 +176,8 @@ public class HomePageInterface extends JFrame {
 				GuiFunction.WaitForJDialog();
 				GuiFunction.AddSession(lblSessionName, contentPane);
 				nbSession++;
+				nbSessionName++;
+				System.out.print(nbSession);
 			}
 		};
 		updateGUI.start();
@@ -221,7 +224,7 @@ public class HomePageInterface extends JFrame {
 		
 		label_1.addMouseListener(new MouseAdapter() {
 	        public void mousePressed(MouseEvent e) {
-	        	dispose();
+	        	System.exit(0);
 	        }
 	      });
 		

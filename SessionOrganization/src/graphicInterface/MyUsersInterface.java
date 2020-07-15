@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Point;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -41,6 +42,9 @@ public class MyUsersInterface {
 
 	private JFrame frmMyPlan;
 	ArrayList<JButton> coursesList = new ArrayList<JButton>();
+	public static ArrayList<Rectangle> arrowsUpPosition = new ArrayList<Rectangle>();
+	public static ArrayList<Rectangle> arrowsDownPosition = new ArrayList<Rectangle>();
+	public static ArrayList<Rectangle> evaluationPosition = new ArrayList<Rectangle>();
 	public static int nbCourse = 1;
 	public static int course1 = 0;
 	public static int course2 = 0;
@@ -88,6 +92,9 @@ public class MyUsersInterface {
 		frmMyPlan.setTitle("My Plan");
 		frmMyPlan.setBounds(100, 100, 1342, 782);
 		frmMyPlan.getContentPane().setLayout(null);
+		GuiFunction.InitializeArrowsUpPositionList();
+		GuiFunction.InitializeArrowsDownPositionList();
+		GuiFunction.InitializeEvaluationPositionList();
 		JProgressBar progressBar = new JProgressBar();
 		progressBar.setForeground(Color.GREEN);
 		progressBar.setBounds(36, 690, 162, 11);
@@ -176,7 +183,7 @@ public class MyUsersInterface {
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setEnabled(false);
 		lblNewLabel.setIcon(new ImageIcon(MyUsersInterface.class.getResource("/image/next_MySession.png")));
-		lblNewLabel.setBounds(224, 375, 346, 341);
+		lblNewLabel.setBounds(224, 375, 368, 341);
 		frmMyPlan.getContentPane().add(lblNewLabel);
 
 		// this label is set for the rating of the courses. It will upgrade as soon as the student change his marks
@@ -210,6 +217,7 @@ public class MyUsersInterface {
 					btnNewButton.setText(CourseName.courseName);
 					btnNewButton.setEnabled(true);
 					lblNewLabel.setEnabled(true);
+					GuiFunction.CreateNewArrows(frmMyPlan);
 					break;
 				}
 				case 2:
@@ -514,6 +522,77 @@ public class MyUsersInterface {
 		lblSessionNme.setBounds(56, 10, 124, 27);
 		lblSessionNme.setText(AddSessionInterface.sessionName);
 		frmMyPlan.getContentPane().add(lblSessionNme);
+		
+		
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setEnabled(false);
+		lblNewLabel_1.setIcon(new ImageIcon(MyUsersInterface.class.getResource("/image/icons8-collapse-arrow-26.png")));
+		lblNewLabel_1.setBounds(1238, 107, 26, 27);
+		frmMyPlan.getContentPane().add(lblNewLabel_1);
+		
+		JLabel label_9 = new JLabel("");
+		label_9.setIcon(new ImageIcon(MyUsersInterface.class.getResource("/image/icons8-expand-arrow-26.png")));
+		label_9.setBounds(1278, 107, 26, 27);
+		frmMyPlan.getContentPane().add(label_9);
+		
+		JLabel label_10 = new JLabel("1");
+		label_10.setBackground(Color.GREEN);
+		label_10.setFont(new Font("Georgia", Font.PLAIN, 20));
+		label_10.setForeground(Color.RED);
+		label_10.setBounds(1317, 107, 25, 27);
+		frmMyPlan.getContentPane().add(label_10);
+		
+		
+		
+		JLabel label_11 = new JLabel("");
+		label_11.setIcon(new ImageIcon(MyUsersInterface.class.getResource("/image/icons8-reply-arrow-26.png")));
+		label_11.setBounds(250, 65, 33, 13);
+		label_11.addMouseListener(new MouseAdapter() {
+	        public void mousePressed(MouseEvent e) {
+	        	System.out.println("Cancel the current action");
+	        }
+			@Override
+			public void mouseExited(MouseEvent e) {
+				label_11.setIcon(new ImageIcon(MyUsersInterface.class.getResource("/image/icons8-reply-arrow-261.png")));
+			}
+	      });
+		frmMyPlan.getContentPane().add(label_11);
+		
+		JLabel label_12 = new JLabel("");
+		label_12.setIcon(new ImageIcon(MyUsersInterface.class.getResource("/image/icons8-collapse-arrow-26.png")));
+		label_12.setBounds(1238, 170, 26, 27);
+		frmMyPlan.getContentPane().add(label_12);
+		
+		JLabel label_13 = new JLabel("");
+		label_13.setEnabled(false);
+		label_13.setIcon(new ImageIcon(MyUsersInterface.class.getResource("/image/icons8-expand-arrow-26.png")));
+		label_13.setBounds(1278, 170, 26, 27);
+		frmMyPlan.getContentPane().add(label_13);
+		
+		JLabel label_14 = new JLabel("2");
+		label_14.setForeground(Color.RED);
+		label_14.setFont(new Font("Georgia", Font.PLAIN, 20));
+		label_14.setBackground(Color.GREEN);
+		label_14.setBounds(1317, 170, 25, 27);
+		frmMyPlan.getContentPane().add(label_14);
+		
+		JLabel label_15 = new JLabel("");
+		label_15.setIcon(new ImageIcon(MyUsersInterface.class.getResource("/image/icons8-chevron-24.png")));
+		label_15.setBounds(1238, 229, 26, 27);
+		frmMyPlan.getContentPane().add(label_15);
+		
+		JLabel label_16 = new JLabel("");
+		label_16.setEnabled(false);
+		label_16.setIcon(new ImageIcon(MyUsersInterface.class.getResource("/image/icons8-chevron-24 (1).png")));
+		label_16.setBounds(1278, 229, 26, 27);
+		frmMyPlan.getContentPane().add(label_16);
+		
+		JLabel label_17 = new JLabel("3");
+		label_17.setForeground(Color.RED);
+		label_17.setFont(new Font("Georgia", Font.PLAIN, 20));
+		label_17.setBackground(Color.GREEN);
+		label_17.setBounds(1317, 229, 25, 27);
+		frmMyPlan.getContentPane().add(label_17);
 		SetUp();
 		
 			
