@@ -38,12 +38,14 @@ public class CourseName extends JDialog {
 	private JTextField textField_1;
 	public static String courseName = "";
 	public static int numEvaluation = 1;
+	public static boolean informationCorrect = false;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main() {
 		try {
+			informationCorrect = false;
 			CourseName dialog = new CourseName();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
@@ -103,6 +105,7 @@ public class CourseName extends JDialog {
 					{
 						courseName = textField.getText();
 						numEvaluation = Integer.parseInt(textField_1.getText());
+						informationCorrect = true;
 						AddCourseInterface.main();
 						//getContentPane().setVisible(false);
 						dispose();

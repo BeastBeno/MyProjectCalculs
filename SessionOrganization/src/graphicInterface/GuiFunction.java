@@ -3,10 +3,13 @@ package graphicInterface;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -60,6 +63,52 @@ public class GuiFunction {
 		MyUsersInterface.evaluationPosition.add(new Rectangle(1317, 275, 26, 27));
 		MyUsersInterface.evaluationPosition.add(new Rectangle(1317, 331, 26, 27));
 	}
+	
+	public static void InitializeCoursePositionList() {
+		MyUsersInterface.coursePosition.add(new Rectangle(1112, 56, 116, 22));
+		MyUsersInterface.coursePosition.add(new Rectangle(996, 56, 116, 22));
+		MyUsersInterface.coursePosition.add(new Rectangle(880, 56, 116, 22));
+		MyUsersInterface.coursePosition.add(new Rectangle(770, 56, 116, 22));
+		MyUsersInterface.coursePosition.add(new Rectangle(656, 56, 116, 22));
+		MyUsersInterface.coursePosition.add(new Rectangle(540, 56, 116, 22));
+		MyUsersInterface.coursePosition.add(new Rectangle(424, 56, 116, 22));
+		MyUsersInterface.coursePosition.add(new Rectangle(308, 56, 116, 22));
+	}
+	
+	public static void InitializeCoursesList() {
+		for(int i = 0; i < AddSessionInterface.numCourses; i++) {
+			String courseName = "Course "+(i+1);
+			MyUsersInterface.coursesList.add(new JButton(courseName));
+		}
+	}
+	public static void setCoursesProperty() {
+		for(int i = 0; i < AddSessionInterface.numCourses; i++) {
+			Rectangle coursePosition = MyUsersInterface.coursePosition.get(i);
+			JButton course = MyUsersInterface.coursesList.get(i);
+			course.setBounds(coursePosition);
+			course.setBackground(new Color(51, 51, 51));
+			course.setEnabled(false);
+		}
+	}
+	
+	public static void setCoursesAction(JLabel graphs, JLabel weekGraph,JLabel performanceGraph, JLabel aptitudeGraph) {
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				for(int i = 0; i < AddSessionInterface.numCourses; i++) {
+					JButton course = MyUsersInterface.coursesList.get(i);
+					course.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+							CourseName.courseName = course.getText();
+							MyUsersInterface.InnitButton(course, graphs, weekGraph, performanceGraph, aptitudeGraph);
+							course.setBackground(new Color(51, 102, 255));
+					}
+				});
+				
+			}
+			}
+		});
+	}
 
 	public static void UpdateUserName(JLabel userName) {
 		userName.setText(ConnectionInterface.userName);
@@ -75,7 +124,6 @@ public class GuiFunction {
 	}
 
 	public static boolean CheckIfAddSessoinDone() {
-
 		while(!AddSessionInterface.informationCorrect)
 			return false;
 		return true;     
@@ -88,8 +136,18 @@ public class GuiFunction {
 	}
 
 	public static boolean CheckIfConnectionDone() {
-
 		while(!ConnectionInterface.informationCorrect)
+			return false;
+		return true;     
+	}
+	
+	public static void WaitForCourseName() {
+		while(!CheckIfCourseNameDone())
+			System.out.println(CourseName.courseName);    
+	}
+
+	public static boolean CheckIfCourseNameDone() {
+		while(!CourseName.informationCorrect)
 			return false;
 		return true;     
 	}
@@ -218,6 +276,12 @@ public class GuiFunction {
 			}
 		});
 
+	}
+	
+	public static void setCourse(JButton btnNewButton) {
+
+		btnNewButton.setText(CourseName.courseName);
+		btnNewButton.setEnabled(true);
 	}
 	
 	
